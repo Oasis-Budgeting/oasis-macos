@@ -1,13 +1,13 @@
 //
-//  Bucket_BudgetUITestsLaunchTests.swift
-//  Bucket BudgetUITests
+//  OasisUITestsLaunchTests.swift
+//  OasisUITests
 //
 //  Created by Surya Vamsi on 28/02/26.
 //
 
 import XCTest
 
-final class Bucket_BudgetUITestsLaunchTests: XCTestCase {
+final class OasisUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

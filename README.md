@@ -1,6 +1,6 @@
-# Bucket Budget macOS (`oasis-macos`)
+# Oasis macOS (`oasis-macos`)
 
-A native SwiftUI macOS app for personal budgeting, connected to a Bucket Budget backend API.
+A native SwiftUI macOS app for personal budgeting, connected to a Oasis backend API.
 
 The app provides a desktop-first finance dashboard with account tracking, bucket/category budgeting, transaction management, goals, recurring subscriptions, investments, and debt payoff visibility.
 
@@ -47,18 +47,18 @@ The app provides a desktop-first finance dashboard with account tracking, bucket
 ## Project Layout
 
 ```text
-Bucket Budget/
-├─ Bucket Budget/
-│  ├─ Bucket_BudgetApp.swift
+Oasis/
+├─ Oasis/
+│  ├─ OasisApp.swift
 │  ├─ ContentView.swift
 │  ├─ Item.swift
 │  └─ Assets.xcassets/
 ├─ BucketBudgetAPI.swift
-├─ Bucket BudgetTests/
-│  └─ Bucket_BudgetTests.swift
-└─ Bucket BudgetUITests/
-   ├─ Bucket_BudgetUITests.swift
-   └─ Bucket_BudgetUITestsLaunchTests.swift
+├─ OasisTests/
+│  └─ OasisTests.swift
+└─ OasisUITests/
+   ├─ OasisUITests.swift
+   └─ OasisUITestsLaunchTests.swift
 ```
 
 ## Getting Started
@@ -74,11 +74,11 @@ cd oasis-macos
 
 Open:
 
-- `Bucket Budget.xcodeproj`
+- `Oasis.xcodeproj`
 
 ### 3. Run
 
-- Select the `Bucket Budget` scheme
+- Select the `Oasis` scheme
 - Choose a macOS run destination
 - Press Run
 
@@ -145,13 +145,13 @@ Auth header for protected endpoints:
 
 ### Unit Tests
 
-Uses Apple `Testing` framework (`Bucket BudgetTests`).
+Uses Apple `Testing` framework (`OasisTests`).
 
 Run from Xcode test navigator or with the test action for the app scheme.
 
 ### UI Tests
 
-UI tests (`Bucket BudgetUITests`) validate:
+UI tests (`OasisUITests`) validate:
 
 - Sidebar navigation rendering
 - Presence of inline forms on major screens
@@ -170,7 +170,7 @@ If these are missing, live E2E tests are skipped intentionally.
 
 ## Troubleshooting
 
-- `Connect to your Bucket Budget server first.`
+- `Connect to your Oasis server first.`
   - Add a valid token in app Settings, then retry Sync.
 - `Server URL is invalid.`
   - Verify host/port format (for example `http://localhost:3003`).
@@ -181,9 +181,9 @@ If these are missing, live E2E tests are skipped intentionally.
 
 ## Development Notes
 
-- Main UI implementation lives in `Bucket Budget/ContentView.swift`.
+- Main UI implementation lives in `Oasis/ContentView.swift`.
 - API models/client live in `BucketBudgetAPI.swift`.
-- The app uses a single-window SwiftUI entry point in `Bucket_BudgetApp.swift`.
+- The app uses a single-window SwiftUI entry point in `OasisApp.swift`.
 
 ## License
 

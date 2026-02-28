@@ -1,28 +1,28 @@
 import Foundation
 
-struct BucketBudgetConnection {
+struct OasisConnection {
     var serverURL: String
     var token: String
 }
 
-struct BucketBudgetLoginRequest {
+struct OasisLoginRequest {
     let identifier: String
     let password: String
 }
 
-struct BucketBudgetLoginResponse: Decodable {
+struct OasisLoginResponse: Decodable {
     let token: String
 }
 
-struct BucketBudgetDashboardResponse {
-    let accounts: [BucketBudgetAccount]
-    let transactions: [BucketBudgetTransaction]
-    let budgetSummary: BucketBudgetSummary
-    let spendingByCategory: [BucketBudgetSpendingCategory]
-    let ageOfMoney: BucketBudgetAgeOfMoney
+struct OasisDashboardResponse {
+    let accounts: [OasisAccount]
+    let transactions: [OasisTransaction]
+    let budgetSummary: OasisSummary
+    let spendingByCategory: [OasisSpendingCategory]
+    let ageOfMoney: OasisAgeOfMoney
 }
 
-struct BucketBudgetAccount: Decodable, Identifiable {
+struct OasisAccount: Decodable, Identifiable {
     let id: Int
     let name: String
     let type: String
@@ -43,7 +43,7 @@ struct BucketBudgetAccount: Decodable, Identifiable {
     }
 }
 
-struct BucketBudgetTransaction: Decodable, Identifiable {
+struct OasisTransaction: Decodable, Identifiable {
     let id: Int
     let dateRaw: String
     let payee: String?
@@ -88,7 +88,7 @@ struct BucketBudgetTransaction: Decodable, Identifiable {
     }
 }
 
-struct BucketBudgetSummary: Decodable {
+struct OasisSummary: Decodable {
     let toBeBudgeted: Double
     let totalIncome: Double
     let totalAssigned: Double
@@ -116,7 +116,7 @@ struct BucketBudgetSummary: Decodable {
     }
 }
 
-struct BucketBudgetSpendingCategory: Decodable, Identifiable {
+struct OasisSpendingCategory: Decodable, Identifiable {
     let id = UUID()
     let category: String?
     let total: Double
@@ -133,11 +133,11 @@ struct BucketBudgetSpendingCategory: Decodable, Identifiable {
     }
 }
 
-struct BucketBudgetAgeOfMoney: Decodable {
+struct OasisAgeOfMoney: Decodable {
     let age: Int
 }
 
-struct BucketBudgetGoal: Decodable, Identifiable {
+struct OasisGoal: Decodable, Identifiable {
     let id: Int
     let name: String
     let icon: String?
@@ -171,7 +171,7 @@ struct BucketBudgetGoal: Decodable, Identifiable {
     }
 }
 
-struct BucketBudgetInsight: Decodable, Identifiable {
+struct OasisInsight: Decodable, Identifiable {
     let id = UUID()
     let severity: String
     let title: String
@@ -194,7 +194,7 @@ struct BucketBudgetInsight: Decodable, Identifiable {
     }
 }
 
-struct BucketBudgetIncomeExpensePoint: Decodable, Identifiable {
+struct OasisIncomeExpensePoint: Decodable, Identifiable {
     var id: String { month }
     let month: String
     let income: Double
@@ -214,7 +214,7 @@ struct BucketBudgetIncomeExpensePoint: Decodable, Identifiable {
     }
 }
 
-struct BucketBudgetSubscription: Decodable, Identifiable {
+struct OasisSubscription: Decodable, Identifiable {
     let id: Int
     let accountName: String?
     let categoryName: String?
@@ -254,7 +254,7 @@ struct BucketBudgetSubscription: Decodable, Identifiable {
     }
 }
 
-struct BucketBudgetInvestment: Decodable, Identifiable {
+struct OasisInvestment: Decodable, Identifiable {
     let id: Int
     let ticker: String
     let name: String
@@ -288,7 +288,7 @@ struct BucketBudgetInvestment: Decodable, Identifiable {
     }
 }
 
-struct BucketBudgetDebt: Decodable, Identifiable {
+struct OasisDebt: Decodable, Identifiable {
     let id: Int
     let name: String
     let type: String
@@ -349,16 +349,16 @@ struct FlexibleDouble: Decodable {
     }
 }
 
-struct BucketBudgetTransactionListResponse: Decodable {
-    let data: [BucketBudgetTransaction]
+struct OasisTransactionListResponse: Decodable {
+    let data: [OasisTransaction]
 }
 
-struct BucketBudgetSettings {
+struct OasisSettings {
     let currency: String
     let locale: String
 }
 
-struct BucketBudgetCreateAccountRequest: Encodable {
+struct OasisCreateAccountRequest: Encodable {
     let name: String
     let type: String
     let balance: Double
@@ -372,7 +372,7 @@ struct BucketBudgetCreateAccountRequest: Encodable {
     }
 }
 
-struct BucketBudgetCreateTransactionRequest: Encodable {
+struct OasisCreateTransactionRequest: Encodable {
     let accountID: Int
     let date: String
     let payee: String
@@ -390,7 +390,7 @@ struct BucketBudgetCreateTransactionRequest: Encodable {
     }
 }
 
-struct BucketBudgetCreateGoalRequest: Encodable {
+struct OasisCreateGoalRequest: Encodable {
     let name: String
     let targetAmount: Double
     let savedAmount: Double
@@ -402,7 +402,7 @@ struct BucketBudgetCreateGoalRequest: Encodable {
     }
 }
 
-struct BucketBudgetCreateSubscriptionRequest: Encodable {
+struct OasisCreateSubscriptionRequest: Encodable {
     let accountID: Int
     let type: String
     let amount: Double
@@ -422,7 +422,7 @@ struct BucketBudgetCreateSubscriptionRequest: Encodable {
     }
 }
 
-struct BucketBudgetCreateInvestmentRequest: Encodable {
+struct OasisCreateInvestmentRequest: Encodable {
     let ticker: String
     let name: String
     let assetClass: String
@@ -440,7 +440,7 @@ struct BucketBudgetCreateInvestmentRequest: Encodable {
     }
 }
 
-struct BucketBudgetCreateDebtRequest: Encodable {
+struct OasisCreateDebtRequest: Encodable {
     let name: String
     let type: String
     let balance: Double
@@ -458,22 +458,22 @@ struct BucketBudgetCreateDebtRequest: Encodable {
     }
 }
 
-struct BucketBudgetCategory: Decodable, Identifiable {
+struct OasisCategory: Decodable, Identifiable {
     let id: Int
     let name: String
 }
 
-struct BucketBudgetCategoryGroup: Decodable, Identifiable {
+struct OasisCategoryGroup: Decodable, Identifiable {
     let id: Int
     let name: String
-    let categories: [BucketBudgetCategory]
+    let categories: [OasisCategory]
 }
 
-struct BucketBudgetCreateCategoryGroupRequest: Encodable {
+struct OasisCreateCategoryGroupRequest: Encodable {
     let name: String
 }
 
-struct BucketBudgetCreateCategoryRequest: Encodable {
+struct OasisCreateCategoryRequest: Encodable {
     let groupID: Int
     let name: String
 
@@ -483,11 +483,11 @@ struct BucketBudgetCreateCategoryRequest: Encodable {
     }
 }
 
-struct BucketBudgetAssignBudgetRequest: Encodable {
+struct OasisAssignBudgetRequest: Encodable {
     let assigned: Double
 }
 
-enum BucketBudgetAPIError: LocalizedError {
+enum OasisAPIError: LocalizedError {
     case invalidBaseURL
     case notConnected
     case invalidResponse
@@ -498,7 +498,7 @@ enum BucketBudgetAPIError: LocalizedError {
         case .invalidBaseURL:
             return "Server URL is invalid."
         case .notConnected:
-            return "Connect to your Bucket Budget server first."
+            return "Connect to your Oasis server first."
         case .invalidResponse:
             return "Unexpected response from the server."
         case .server(let message):
@@ -507,10 +507,10 @@ enum BucketBudgetAPIError: LocalizedError {
     }
 }
 
-struct BucketBudgetAPIClient {
-    let connection: BucketBudgetConnection
+struct OasisAPIClient {
+    let connection: OasisConnection
 
-    func login(request: BucketBudgetLoginRequest) async throws -> BucketBudgetLoginResponse {
+    func login(request: OasisLoginRequest) async throws -> OasisLoginResponse {
         let body = [
             "email": request.identifier,
             "username": request.identifier,
@@ -519,17 +519,17 @@ struct BucketBudgetAPIClient {
         return try await send(path: "/auth/login", method: "POST", body: body, includeToken: false)
     }
 
-    func fetchDashboard(month: String) async throws -> BucketBudgetDashboardResponse {
-        let accounts: [BucketBudgetAccount] = try await send(path: "/accounts")
-        let transactionsResponse: BucketBudgetTransactionListResponse = try await send(path: "/transactions?limit=12")
-        let summary: BucketBudgetSummary = try await send(path: "/budget/summary/\(month)")
-        let ageOfMoney: BucketBudgetAgeOfMoney = try await send(path: "/settings/age-of-money")
+    func fetchDashboard(month: String) async throws -> OasisDashboardResponse {
+        let accounts: [OasisAccount] = try await send(path: "/accounts")
+        let transactionsResponse: OasisTransactionListResponse = try await send(path: "/transactions?limit=12")
+        let summary: OasisSummary = try await send(path: "/budget/summary/\(month)")
+        let ageOfMoney: OasisAgeOfMoney = try await send(path: "/settings/age-of-money")
 
         let dateRange = monthDateRange(for: month)
         let spendingPath = "/reports/spending-by-category?from=\(dateRange.from)&to=\(dateRange.to)"
-        let spending: [BucketBudgetSpendingCategory] = try await send(path: spendingPath)
+        let spending: [OasisSpendingCategory] = try await send(path: spendingPath)
 
-        return BucketBudgetDashboardResponse(
+        return OasisDashboardResponse(
             accounts: accounts,
             transactions: transactionsResponse.data,
             budgetSummary: summary,
@@ -538,84 +538,84 @@ struct BucketBudgetAPIClient {
         )
     }
 
-    func fetchTransactions(limit: Int = 200) async throws -> [BucketBudgetTransaction] {
-        let response: BucketBudgetTransactionListResponse = try await send(path: "/transactions?limit=\(limit)")
+    func fetchTransactions(limit: Int = 200) async throws -> [OasisTransaction] {
+        let response: OasisTransactionListResponse = try await send(path: "/transactions?limit=\(limit)")
         return response.data
     }
 
-    func fetchGoals() async throws -> [BucketBudgetGoal] {
+    func fetchGoals() async throws -> [OasisGoal] {
         try await send(path: "/goals")
     }
 
-    func fetchInsights() async throws -> [BucketBudgetInsight] {
+    func fetchInsights() async throws -> [OasisInsight] {
         try await send(path: "/insights")
     }
 
-    func fetchIncomeVsExpense(months: Int = 6) async throws -> [BucketBudgetIncomeExpensePoint] {
+    func fetchIncomeVsExpense(months: Int = 6) async throws -> [OasisIncomeExpensePoint] {
         try await send(path: "/reports/income-vs-expense?months=\(months)")
     }
 
-    func fetchSubscriptions() async throws -> [BucketBudgetSubscription] {
+    func fetchSubscriptions() async throws -> [OasisSubscription] {
         try await send(path: "/subscriptions")
     }
 
-    func fetchInvestments() async throws -> [BucketBudgetInvestment] {
+    func fetchInvestments() async throws -> [OasisInvestment] {
         try await send(path: "/investments")
     }
 
-    func fetchDebts() async throws -> [BucketBudgetDebt] {
+    func fetchDebts() async throws -> [OasisDebt] {
         try await send(path: "/debts")
     }
 
-    func fetchCategoryGroups() async throws -> [BucketBudgetCategoryGroup] {
+    func fetchCategoryGroups() async throws -> [OasisCategoryGroup] {
         try await send(path: "/category-groups")
     }
 
-    func fetchSettings() async throws -> BucketBudgetSettings {
+    func fetchSettings() async throws -> OasisSettings {
         let raw: [String: String] = try await send(path: "/settings")
-        return BucketBudgetSettings(
+        return OasisSettings(
             currency: raw["currency"] ?? "USD",
             locale: raw["locale"] ?? "en-US"
         )
     }
 
-    func createAccount(_ requestBody: BucketBudgetCreateAccountRequest) async throws -> BucketBudgetAccount {
+    func createAccount(_ requestBody: OasisCreateAccountRequest) async throws -> OasisAccount {
         try await send(path: "/accounts", method: "POST", body: requestBody)
     }
 
-    func createTransaction(_ requestBody: BucketBudgetCreateTransactionRequest) async throws -> BucketBudgetTransaction {
+    func createTransaction(_ requestBody: OasisCreateTransactionRequest) async throws -> OasisTransaction {
         try await send(path: "/transactions", method: "POST", body: requestBody)
     }
 
-    func createGoal(_ requestBody: BucketBudgetCreateGoalRequest) async throws -> BucketBudgetGoal {
+    func createGoal(_ requestBody: OasisCreateGoalRequest) async throws -> OasisGoal {
         try await send(path: "/goals", method: "POST", body: requestBody)
     }
 
-    func createSubscription(_ requestBody: BucketBudgetCreateSubscriptionRequest) async throws -> BucketBudgetSubscription {
+    func createSubscription(_ requestBody: OasisCreateSubscriptionRequest) async throws -> OasisSubscription {
         try await send(path: "/subscriptions", method: "POST", body: requestBody)
     }
 
-    func createInvestment(_ requestBody: BucketBudgetCreateInvestmentRequest) async throws -> BucketBudgetInvestment {
+    func createInvestment(_ requestBody: OasisCreateInvestmentRequest) async throws -> OasisInvestment {
         try await send(path: "/investments", method: "POST", body: requestBody)
     }
 
-    func createDebt(_ requestBody: BucketBudgetCreateDebtRequest) async throws -> BucketBudgetDebt {
+    func createDebt(_ requestBody: OasisCreateDebtRequest) async throws -> OasisDebt {
         try await send(path: "/debts", method: "POST", body: requestBody)
     }
 
-    func createCategoryGroup(name: String) async throws -> BucketBudgetCategoryGroup {
-        try await send(path: "/category-groups", method: "POST", body: BucketBudgetCreateCategoryGroupRequest(name: name))
+    func createCategoryGroup(name: String) async throws -> OasisCategoryGroup {
+        try await send(path: "/category-groups", method: "POST", body: OasisCreateCategoryGroupRequest(name: name))
     }
 
-    func createCategory(groupID: Int, name: String) async throws -> BucketBudgetCategory {
-        try await send(path: "/categories", method: "POST", body: BucketBudgetCreateCategoryRequest(groupID: groupID, name: name))
+    func createCategory(groupID: Int, name: String) async throws -> OasisCategory {
+        try await send(path: "/categories", method: "POST", body: OasisCreateCategoryRequest(groupID: groupID, name: name))
     }
 
     func assignBudget(month: String, categoryID: Int, assigned: Double) async throws {
-        let _: BucketBudgetAssignBudgetResponse = try await send(
+        let _: OasisAssignBudgetResponse = try await send(
             path: "/budget/\(month)/\(categoryID)",
             method: "PUT",
-            body: BucketBudgetAssignBudgetRequest(assigned: assigned)
+            body: OasisAssignBudgetRequest(assigned: assigned)
         )
     }
 
@@ -635,7 +635,7 @@ struct BucketBudgetAPIClient {
         includeBody: Bool = true
     ) async throws -> Response {
         guard let url = makeURL(path: path) else {
-            throw BucketBudgetAPIError.invalidBaseURL
+            throw OasisAPIError.invalidBaseURL
         }
 
         var request = URLRequest(url: url)
@@ -644,7 +644,7 @@ struct BucketBudgetAPIClient {
 
         if includeToken {
             guard !connection.token.isEmpty else {
-                throw BucketBudgetAPIError.notConnected
+                throw OasisAPIError.notConnected
             }
             request.setValue("Bearer \(connection.token)", forHTTPHeaderField: "Authorization")
         }
@@ -655,20 +655,20 @@ struct BucketBudgetAPIClient {
 
         let (data, response) = try await URLSession.shared.data(for: request)
         guard let httpResponse = response as? HTTPURLResponse else {
-            throw BucketBudgetAPIError.invalidResponse
+            throw OasisAPIError.invalidResponse
         }
 
         guard (200...299).contains(httpResponse.statusCode) else {
             if let apiError = try? JSONDecoder().decode(APIErrorMessage.self, from: data) {
-                throw BucketBudgetAPIError.server(apiError.error)
+                throw OasisAPIError.server(apiError.error)
             }
-            throw BucketBudgetAPIError.server("Request failed with status code \(httpResponse.statusCode).")
+            throw OasisAPIError.server("Request failed with status code \(httpResponse.statusCode).")
         }
 
         do {
             return try JSONDecoder().decode(Response.self, from: data)
         } catch {
-            throw BucketBudgetAPIError.server("Could not decode server response.")
+            throw OasisAPIError.server("Could not decode server response.")
         }
     }
 
@@ -710,7 +710,7 @@ private struct APIErrorMessage: Decodable {
     let error: String
 }
 
-private struct BucketBudgetAssignBudgetResponse: Decodable {
+private struct OasisAssignBudgetResponse: Decodable {
     let categoryID: Int
 
     private enum CodingKeys: String, CodingKey {

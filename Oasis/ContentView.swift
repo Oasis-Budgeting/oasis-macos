@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Bucket Budget
+//  Oasis
 //
 //  Created by Surya Vamsi on 28/02/26.
 //
@@ -9,8 +9,8 @@ import SwiftUI
 import Charts
 
 struct ContentView: View {
-    @AppStorage("bb.serverURL") private var storedServerURL = "http://192.168.0.105:3003"
-    @AppStorage("bb.authToken") private var storedAuthToken = ""
+    @AppStorage("oasis.serverURL") private var storedServerURL = "http://192.168.0.105:3003"
+    @AppStorage("oasis.authToken") private var storedAuthToken = ""
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @State private var selectedSection: SidebarSection? = .dashboard
@@ -18,15 +18,15 @@ struct ContentView: View {
     @State private var transactionSearchText = ""
     @State private var transactionFilter: TransactionFilter = .all
 
-    @State private var dashboard: BucketBudgetDashboardResponse?
-    @State private var allTransactions: [BucketBudgetTransaction] = []
-    @State private var goals: [BucketBudgetGoal] = []
-    @State private var insights: [BucketBudgetInsight] = []
-    @State private var incomeVsExpense: [BucketBudgetIncomeExpensePoint] = []
-    @State private var subscriptions: [BucketBudgetSubscription] = []
-    @State private var investments: [BucketBudgetInvestment] = []
-    @State private var debts: [BucketBudgetDebt] = []
-    @State private var categoryGroups: [BucketBudgetCategoryGroup] = []
+    @State private var dashboard: OasisDashboardResponse?
+    @State private var allTransactions: [OasisTransaction] = []
+    @State private var goals: [OasisGoal] = []
+    @State private var insights: [OasisInsight] = []
+    @State private var incomeVsExpense: [OasisIncomeExpensePoint] = []
+    @State private var subscriptions: [OasisSubscription] = []
+    @State private var investments: [OasisInvestment] = []
+    @State private var debts: [OasisDebt] = []
+    @State private var categoryGroups: [OasisCategoryGroup] = []
 
     @State private var appCurrencyCode = "USD"
     @State private var appLocaleIdentifier = "en-US"
@@ -104,11 +104,11 @@ struct ContentView: View {
         !storedAuthToken.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 
-    private var activeAccounts: [BucketBudgetAccount] {
+    private var activeAccounts: [OasisAccount] {
         dashboard?.accounts.filter { !$0.closed } ?? []
     }
 
-    private var availableAccounts: [BucketBudgetAccount] {
+    private var availableAccounts: [OasisAccount] {
         dashboard?.accounts ?? []
     }
 
@@ -136,7 +136,7 @@ struct ContentView: View {
         dashboard?.ageOfMoney.age ?? 0
     }
 
-    private var filteredTransactions: [BucketBudgetTransaction] {
+    private var filteredTransactions: [OasisTransaction] {
         let statusFiltered = allTransactions.filter { transaction in
             switch transactionFilter {
             case .all:
@@ -160,7 +160,7 @@ struct ContentView: View {
         }
     }
 
-    private var selectedTransaction: BucketBudgetTransaction? {
+    private var selectedTransaction: OasisTransaction? {
         guard let selectedTransactionID else {
             return nil
         }
@@ -176,11 +176,11 @@ struct ContentView: View {
         goals.reduce(0) { $0 + $1.savedAmount }
     }
 
-    private var spendingCategories: [BucketBudgetSpendingCategory] {
+    private var spendingCategories: [OasisSpendingCategory] {
         (dashboard?.spendingByCategory ?? []).sorted { $0.total > $1.total }
     }
 
-    private var incomeSeries: [BucketBudgetIncomeExpensePoint] {
+    private var incomeSeries: [OasisIncomeExpensePoint] {
         incomeVsExpense.sorted { $0.month < $1.month }
     }
 
@@ -286,7 +286,7 @@ struct ContentView: View {
             .padding(.horizontal, 12)
             .padding(.bottom, 12)
         }
-        .navigationTitle("Bucket Budget")
+        .navigationTitle("Oasis")
         .navigationSplitViewColumnWidth(min: 220, ideal: 250)
     }
 
@@ -1226,7 +1226,7 @@ struct ContentView: View {
 
                 PanelCard(title: "About") {
                     VStack(alignment: .leading, spacing: 6) {
-                        Text("Bucket Budget macOS")
+                        Text("Oasis macOS")
                             .font(.headline)
                         Text("Native client for your self-hosted budget server.")
                             .foregroundStyle(.secondary)
@@ -1590,7 +1590,7 @@ struct ContentView: View {
         }
 
         do {
-            let client = BucketBudgetAPIClient(connection: .init(serverURL: formServerURL, token: ""))
+            let client = OasisAPIClient(connection: .init(serverURL: formServerURL, token: ""))
             let loginResponse = try await client.login(request: .init(identifier: formIdentifier, password: formPassword))
             storedServerURL = formServerURL.trimmingCharacters(in: .whitespacesAndNewlines)
             storedAuthToken = loginResponse.token
@@ -1636,7 +1636,7 @@ struct ContentView: View {
         }
 
         do {
-            let client = BucketBudgetAPIClient(connection: .init(serverURL: storedServerURL, token: storedAuthToken))
+            let client = OasisAPIClient(connection: .init(serverURL: storedServerURL, token: storedAuthToken))
             _ = try await client.createTransaction(
                 .init(
                     accountID: accountID,
@@ -1665,7 +1665,7 @@ struct ContentView: View {
         let saved = parsedNumber(newGoalSavedAmount) ?? 0
 
         do {
-            let client = BucketBudgetAPIClient(connection: .init(serverURL: storedServerURL, token: storedAuthToken))
+            let client = OasisAPIClient(connection: .init(serverURL: storedServerURL, token: storedAuthToken))
             _ = try await client.createGoal(.init(name: newGoalName, targetAmount: target, savedAmount: saved))
             showAddGoalSheet = false
             resetAddForms()
@@ -1683,7 +1683,7 @@ struct ContentView: View {
         }
 
         do {
-            let client = BucketBudgetAPIClient(connection: .init(serverURL: storedServerURL, token: storedAuthToken))
+            let client = OasisAPIClient(connection: .init(serverURL: storedServerURL, token: storedAuthToken))
             _ = try await client.createAccount(
                 .init(
                     name: newAccountName,
@@ -1709,7 +1709,7 @@ struct ContentView: View {
         }
 
         do {
-            let client = BucketBudgetAPIClient(connection: .init(serverURL: storedServerURL, token: storedAuthToken))
+            let client = OasisAPIClient(connection: .init(serverURL: storedServerURL, token: storedAuthToken))
             _ = try await client.createSubscription(
                 .init(
                     accountID: accountID,
@@ -1739,7 +1739,7 @@ struct ContentView: View {
         }
 
         do {
-            let client = BucketBudgetAPIClient(connection: .init(serverURL: storedServerURL, token: storedAuthToken))
+            let client = OasisAPIClient(connection: .init(serverURL: storedServerURL, token: storedAuthToken))
             _ = try await client.createInvestment(
                 .init(
                     ticker: newInvestmentTicker,
@@ -1769,7 +1769,7 @@ struct ContentView: View {
         }
 
         do {
-            let client = BucketBudgetAPIClient(connection: .init(serverURL: storedServerURL, token: storedAuthToken))
+            let client = OasisAPIClient(connection: .init(serverURL: storedServerURL, token: storedAuthToken))
             _ = try await client.createDebt(
                 .init(
                     name: newDebtName,
@@ -1791,7 +1791,7 @@ struct ContentView: View {
     @MainActor
     private func createCategoryGroup() async {
         do {
-            let client = BucketBudgetAPIClient(connection: .init(serverURL: storedServerURL, token: storedAuthToken))
+            let client = OasisAPIClient(connection: .init(serverURL: storedServerURL, token: storedAuthToken))
             _ = try await client.createCategoryGroup(name: newCategoryGroupName)
             showAddCategoryGroupSheet = false
             resetAddForms()
@@ -1809,7 +1809,7 @@ struct ContentView: View {
         }
 
         do {
-            let client = BucketBudgetAPIClient(connection: .init(serverURL: storedServerURL, token: storedAuthToken))
+            let client = OasisAPIClient(connection: .init(serverURL: storedServerURL, token: storedAuthToken))
             _ = try await client.createCategory(groupID: groupID, name: newCategoryName)
             showAddCategorySheet = false
             resetAddForms()
@@ -1828,7 +1828,7 @@ struct ContentView: View {
         }
 
         do {
-            let client = BucketBudgetAPIClient(connection: .init(serverURL: storedServerURL, token: storedAuthToken))
+            let client = OasisAPIClient(connection: .init(serverURL: storedServerURL, token: storedAuthToken))
             try await client.assignBudget(month: currentMonth(), categoryID: categoryID, assigned: amount)
             showAssignBudgetSheet = false
             resetAddForms()
@@ -1887,7 +1887,7 @@ struct ContentView: View {
     @MainActor
     private func refreshData() async {
         guard isConnected else {
-            errorMessage = BucketBudgetAPIError.notConnected.localizedDescription
+            errorMessage = OasisAPIError.notConnected.localizedDescription
             return
         }
 
@@ -1897,11 +1897,11 @@ struct ContentView: View {
 
         do {
             let month = currentMonth()
-            let client = BucketBudgetAPIClient(connection: .init(serverURL: storedServerURL, token: storedAuthToken))
+            let client = OasisAPIClient(connection: .init(serverURL: storedServerURL, token: storedAuthToken))
 
             let dashboardResponse = try await client.fetchDashboard(month: month)
             let transactionsResponse = try await client.fetchTransactions(limit: 200)
-            let settingsResponse = (try? await client.fetchSettings()) ?? BucketBudgetSettings(currency: "USD", locale: "en-US")
+            let settingsResponse = (try? await client.fetchSettings()) ?? OasisSettings(currency: "USD", locale: "en-US")
 
             let goalsResponse = (try? await client.fetchGoals()) ?? []
             let insightsResponse = (try? await client.fetchInsights()) ?? []
@@ -1988,18 +1988,18 @@ struct ContentView: View {
         return palette[index % palette.count]
     }
 
-    private func goalProgress(_ goal: BucketBudgetGoal) -> Double {
+    private func goalProgress(_ goal: OasisGoal) -> Double {
         guard goal.targetAmount > 0 else {
             return 0
         }
         return min(max(goal.savedAmount / goal.targetAmount, 0), 1)
     }
 
-    private func progressText(for goal: BucketBudgetGoal) -> String {
+    private func progressText(for goal: OasisGoal) -> String {
         "\(Int(goalProgress(goal) * 100))%"
     }
 
-    private func goalColor(_ goal: BucketBudgetGoal) -> Color {
+    private func goalColor(_ goal: OasisGoal) -> Color {
         if let colorHex = goal.colorHex {
             return Color(hex: colorHex) ?? .indigo
         }
@@ -2127,7 +2127,7 @@ private struct CategoryBarRow: View {
 }
 
 private struct InsightRow: View {
-    let insight: BucketBudgetInsight
+    let insight: OasisInsight
 
     private var tint: Color {
         switch insight.severity.lowercased() {
@@ -2160,7 +2160,7 @@ private struct InsightRow: View {
 }
 
 private struct TransactionRow: View {
-    let transaction: BucketBudgetTransaction
+    let transaction: OasisTransaction
     let isSelected: Bool
     let currencyCode: String
     let onSelect: () -> Void
@@ -2214,7 +2214,7 @@ private struct TransactionRow: View {
 
 private struct SimpleTransactionList: View {
     @Environment(\.appCurrencyCode) private var appCurrencyCode
-    let transactions: [BucketBudgetTransaction]
+    let transactions: [OasisTransaction]
 
     var body: some View {
         VStack(spacing: 8) {

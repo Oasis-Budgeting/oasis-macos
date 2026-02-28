@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8118478E2F530C770011A5B5 /* BucketBudgetAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8118478D2F530C770011A5B5 /* BucketBudgetAPI.swift */; };
+		8118478E2F530C770011A5B5 /* OasisAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8118478D2F530C770011A5B5 /* OasisAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -16,38 +16,38 @@
 			containerPortal = 811847592F530AB50011A5B5 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 811847602F530AB50011A5B5;
-			remoteInfo = "Bucket Budget";
+			remoteInfo = Oasis;
 		};
 		8118477B2F530AB60011A5B5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 811847592F530AB50011A5B5 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 811847602F530AB50011A5B5;
-			remoteInfo = "Bucket Budget";
+			remoteInfo = Oasis;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		811847612F530AB50011A5B5 /* Bucket Budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bucket Budget.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		811847702F530AB60011A5B5 /* Bucket BudgetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bucket BudgetTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8118477A2F530AB60011A5B5 /* Bucket BudgetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bucket BudgetUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8118478D2F530C770011A5B5 /* BucketBudgetAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketBudgetAPI.swift; sourceTree = "<group>"; };
+		811847612F530AB50011A5B5 /* Oasis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Oasis.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		811847702F530AB60011A5B5 /* OasisTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OasisTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8118477A2F530AB60011A5B5 /* OasisUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OasisUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8118478D2F530C770011A5B5 /* OasisAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OasisAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		811847632F530AB50011A5B5 /* Bucket Budget */ = {
+		811847632F530AB50011A5B5 /* Oasis */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Bucket Budget";
+			path = Oasis;
 			sourceTree = "<group>";
 		};
-		811847732F530AB60011A5B5 /* Bucket BudgetTests */ = {
+		811847732F530AB60011A5B5 /* OasisTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Bucket BudgetTests";
+			path = OasisTests;
 			sourceTree = "<group>";
 		};
-		8118477D2F530AB60011A5B5 /* Bucket BudgetUITests */ = {
+		8118477D2F530AB60011A5B5 /* OasisUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Bucket BudgetUITests";
+			path = OasisUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -80,20 +80,20 @@
 		811847582F530AB50011A5B5 = {
 			isa = PBXGroup;
 			children = (
-				811847632F530AB50011A5B5 /* Bucket Budget */,
-				811847732F530AB60011A5B5 /* Bucket BudgetTests */,
-				8118477D2F530AB60011A5B5 /* Bucket BudgetUITests */,
+				811847632F530AB50011A5B5 /* Oasis */,
+				811847732F530AB60011A5B5 /* OasisTests */,
+				8118477D2F530AB60011A5B5 /* OasisUITests */,
 				811847622F530AB50011A5B5 /* Products */,
-				8118478D2F530C770011A5B5 /* BucketBudgetAPI.swift */,
+				8118478D2F530C770011A5B5 /* OasisAPI.swift */,
 			);
 			sourceTree = "<group>";
 		};
 		811847622F530AB50011A5B5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				811847612F530AB50011A5B5 /* Bucket Budget.app */,
-				811847702F530AB60011A5B5 /* Bucket BudgetTests.xctest */,
-				8118477A2F530AB60011A5B5 /* Bucket BudgetUITests.xctest */,
+				811847612F530AB50011A5B5 /* Oasis.app */,
+				811847702F530AB60011A5B5 /* OasisTests.xctest */,
+				8118477A2F530AB60011A5B5 /* OasisUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,9 +101,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		811847602F530AB50011A5B5 /* Bucket Budget */ = {
+		811847602F530AB50011A5B5 /* Oasis */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 811847842F530AB60011A5B5 /* Build configuration list for PBXNativeTarget "Bucket Budget" */;
+			buildConfigurationList = 811847842F530AB60011A5B5 /* Build configuration list for PBXNativeTarget "Oasis" */;
 			buildPhases = (
 				8118475D2F530AB50011A5B5 /* Sources */,
 				8118475E2F530AB50011A5B5 /* Frameworks */,
@@ -114,18 +114,18 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				811847632F530AB50011A5B5 /* Bucket Budget */,
+				811847632F530AB50011A5B5 /* Oasis */,
 			);
-			name = "Bucket Budget";
+			name = Oasis;
 			packageProductDependencies = (
 			);
-			productName = "Bucket Budget";
-			productReference = 811847612F530AB50011A5B5 /* Bucket Budget.app */;
+			productName = Oasis;
+			productReference = 811847612F530AB50011A5B5 /* Oasis.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8118476F2F530AB60011A5B5 /* Bucket BudgetTests */ = {
+		8118476F2F530AB60011A5B5 /* OasisTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 811847872F530AB60011A5B5 /* Build configuration list for PBXNativeTarget "Bucket BudgetTests" */;
+			buildConfigurationList = 811847872F530AB60011A5B5 /* Build configuration list for PBXNativeTarget "OasisTests" */;
 			buildPhases = (
 				8118476C2F530AB60011A5B5 /* Sources */,
 				8118476D2F530AB60011A5B5 /* Frameworks */,
@@ -137,18 +137,18 @@
 				811847722F530AB60011A5B5 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				811847732F530AB60011A5B5 /* Bucket BudgetTests */,
+				811847732F530AB60011A5B5 /* OasisTests */,
 			);
-			name = "Bucket BudgetTests";
+			name = OasisTests;
 			packageProductDependencies = (
 			);
-			productName = "Bucket BudgetTests";
-			productReference = 811847702F530AB60011A5B5 /* Bucket BudgetTests.xctest */;
+			productName = OasisTests;
+			productReference = 811847702F530AB60011A5B5 /* OasisTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		811847792F530AB60011A5B5 /* Bucket BudgetUITests */ = {
+		811847792F530AB60011A5B5 /* OasisUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8118478A2F530AB60011A5B5 /* Build configuration list for PBXNativeTarget "Bucket BudgetUITests" */;
+			buildConfigurationList = 8118478A2F530AB60011A5B5 /* Build configuration list for PBXNativeTarget "OasisUITests" */;
 			buildPhases = (
 				811847762F530AB60011A5B5 /* Sources */,
 				811847772F530AB60011A5B5 /* Frameworks */,
@@ -160,13 +160,13 @@
 				8118477C2F530AB60011A5B5 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				8118477D2F530AB60011A5B5 /* Bucket BudgetUITests */,
+				8118477D2F530AB60011A5B5 /* OasisUITests */,
 			);
-			name = "Bucket BudgetUITests";
+			name = OasisUITests;
 			packageProductDependencies = (
 			);
-			productName = "Bucket BudgetUITests";
-			productReference = 8118477A2F530AB60011A5B5 /* Bucket BudgetUITests.xctest */;
+			productName = OasisUITests;
+			productReference = 8118477A2F530AB60011A5B5 /* OasisUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -192,7 +192,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8118475C2F530AB50011A5B5 /* Build configuration list for PBXProject "Bucket Budget" */;
+			buildConfigurationList = 8118475C2F530AB50011A5B5 /* Build configuration list for PBXProject "Oasis" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -206,9 +206,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				811847602F530AB50011A5B5 /* Bucket Budget */,
-				8118476F2F530AB60011A5B5 /* Bucket BudgetTests */,
-				811847792F530AB60011A5B5 /* Bucket BudgetUITests */,
+				811847602F530AB50011A5B5 /* Oasis */,
+				8118476F2F530AB60011A5B5 /* OasisTests */,
+				811847792F530AB60011A5B5 /* OasisUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -242,7 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8118478E2F530C770011A5B5 /* BucketBudgetAPI.swift in Sources */,
+				8118478E2F530C770011A5B5 /* OasisAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,12 +265,12 @@
 /* Begin PBXTargetDependency section */
 		811847722F530AB60011A5B5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 811847602F530AB50011A5B5 /* Bucket Budget */;
+			target = 811847602F530AB50011A5B5 /* Oasis */;
 			targetProxy = 811847712F530AB60011A5B5 /* PBXContainerItemProxy */;
 		};
 		8118477C2F530AB60011A5B5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 811847602F530AB50011A5B5 /* Bucket Budget */;
+			target = 811847602F530AB50011A5B5 /* Oasis */;
 			targetProxy = 8118477B2F530AB60011A5B5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -414,7 +414,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.suryavamsi6.Bucket-Budget";
+				PRODUCT_BUNDLE_IDENTIFIER = com.suryavamsi6.Oasis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -446,7 +446,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.suryavamsi6.Bucket-Budget";
+				PRODUCT_BUNDLE_IDENTIFIER = com.suryavamsi6.Oasis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -467,14 +467,14 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 26.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.suryavamsi6.Bucket-BudgetTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.suryavamsi6.OasisTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bucket Budget.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Bucket Budget";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Oasis.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Oasis";
 			};
 			name = Debug;
 		};
@@ -487,14 +487,14 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 26.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.suryavamsi6.Bucket-BudgetTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.suryavamsi6.OasisTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bucket Budget.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Bucket Budget";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Oasis.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Oasis";
 			};
 			name = Release;
 		};
@@ -505,14 +505,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.suryavamsi6.Bucket-BudgetUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.suryavamsi6.OasisUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "Bucket Budget";
+				TEST_TARGET_NAME = Oasis;
 			};
 			name = Debug;
 		};
@@ -523,21 +523,21 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.suryavamsi6.Bucket-BudgetUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.suryavamsi6.OasisUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "Bucket Budget";
+				TEST_TARGET_NAME = Oasis;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8118475C2F530AB50011A5B5 /* Build configuration list for PBXProject "Bucket Budget" */ = {
+		8118475C2F530AB50011A5B5 /* Build configuration list for PBXProject "Oasis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				811847822F530AB60011A5B5 /* Debug */,
@@ -546,7 +546,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		811847842F530AB60011A5B5 /* Build configuration list for PBXNativeTarget "Bucket Budget" */ = {
+		811847842F530AB60011A5B5 /* Build configuration list for PBXNativeTarget "Oasis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				811847852F530AB60011A5B5 /* Debug */,
@@ -555,7 +555,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		811847872F530AB60011A5B5 /* Build configuration list for PBXNativeTarget "Bucket BudgetTests" */ = {
+		811847872F530AB60011A5B5 /* Build configuration list for PBXNativeTarget "OasisTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				811847882F530AB60011A5B5 /* Debug */,
@@ -564,7 +564,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8118478A2F530AB60011A5B5 /* Build configuration list for PBXNativeTarget "Bucket BudgetUITests" */ = {
+		8118478A2F530AB60011A5B5 /* Build configuration list for PBXNativeTarget "OasisUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8118478B2F530AB60011A5B5 /* Debug */,

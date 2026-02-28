@@ -1,13 +1,13 @@
 //
-//  Bucket_BudgetUITests.swift
-//  Bucket BudgetUITests
+//  OasisUITests.swift
+//  OasisUITests
 //
 //  Created by Surya Vamsi on 28/02/26.
 //
 
 import XCTest
 
-final class Bucket_BudgetUITests: XCTestCase {
+final class OasisUITests: XCTestCase {
     private var app: XCUIApplication!
 
     override func setUpWithError() throws {
@@ -176,16 +176,16 @@ final class Bucket_BudgetUITests: XCTestCase {
 
     private func requireLiveConfig() throws -> (serverURL: String, token: String) {
         let environment = ProcessInfo.processInfo.environment
-        let runLive = environment["BB_E2E_RUN"] == "1"
+        let runLive = environment["OASIS_E2E_RUN"] == "1"
         guard runLive else {
-            throw XCTSkip("Live E2E disabled. Set BB_E2E_RUN=1 to enable.")
+            throw XCTSkip("Live E2E disabled. Set OASIS_E2E_RUN=1 to enable.")
         }
 
-        guard let serverURL = environment["BB_E2E_SERVER_URL"], !serverURL.isEmpty else {
-            throw XCTSkip("Missing BB_E2E_SERVER_URL.")
+        guard let serverURL = environment["OASIS_E2E_SERVER_URL"], !serverURL.isEmpty else {
+            throw XCTSkip("Missing OASIS_E2E_SERVER_URL.")
         }
-        guard let token = environment["BB_E2E_TOKEN"], !token.isEmpty else {
-            throw XCTSkip("Missing BB_E2E_TOKEN.")
+        guard let token = environment["OASIS_E2E_TOKEN"], !token.isEmpty else {
+            throw XCTSkip("Missing OASIS_E2E_TOKEN.")
         }
         return (serverURL, token)
     }

@@ -21,8 +21,8 @@ jobs:
       - name: Build app
         run: |
           xcodebuild \
-            -project "Bucket Budget.xcodeproj" \
-            -scheme "Bucket Budget" \
+            -project "Oasis.xcodeproj" \
+            -scheme "Oasis" \
             -configuration Release \
             -derivedDataPath build \
             CODE_SIGNING_ALLOWED=NO \
@@ -30,17 +30,17 @@ jobs:
 
       - name: Package .app artifact
         run: |
-          APP_PATH="build/Build/Products/Release/Bucket Budget.app"
+          APP_PATH="build/Build/Products/Release/Oasis.app"
           if [ ! -d "$APP_PATH" ]; then
             echo "App not found at: $APP_PATH"
             find build -name "*.app" -maxdepth 6 || true
             exit 1
           fi
-          ditto -c -k --sequesterRsrc --keepParent "$APP_PATH" "Bucket-Budget-macOS.zip"
+          ditto -c -k --sequesterRsrc --keepParent "$APP_PATH" "Oasis-macOS.zip"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Bucket-Budget-macOS
-          path: Bucket-Budget-macOS.zip
+          name: Oasis-macOS
+          path: Oasis-macOS.zip
           if-no-files-found: error
