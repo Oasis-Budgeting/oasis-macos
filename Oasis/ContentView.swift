@@ -219,7 +219,7 @@ struct ContentView: View {
                 } label: {
                     Label("Sync", systemImage: "arrow.clockwise")
                 }
-                .buttonStyle(.glassProminent)
+                .oasisButtonStyle(prominent: true)
                 .disabled(isLoading || !isConnected)
             }
         }
@@ -282,7 +282,7 @@ struct ContentView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(12)
-            .glassEffect(.regular.tint(.white.opacity(0.04)), in: .rect(cornerRadius: 14))
+            .oasisGlassEffect(tint: .white.opacity(0.04), cornerRadius: 14)
             .padding(.horizontal, 12)
             .padding(.bottom, 12)
         }
@@ -414,7 +414,7 @@ struct ContentView: View {
                             Button("Create Group") {
                                 Task { await createCategoryGroup() }
                             }
-                            .buttonStyle(.glass)
+                            .oasisButtonStyle()
                             .disabled(newCategoryGroupName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || !isConnected)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -435,7 +435,7 @@ struct ContentView: View {
                             Button("Create Category") {
                                 Task { await createCategory() }
                             }
-                            .buttonStyle(.glass)
+                            .oasisButtonStyle()
                             .disabled(newCategoryGroupSelectionID == nil || newCategoryName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || !isConnected)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -458,7 +458,7 @@ struct ContentView: View {
                             Button("Assign Budget") {
                                 Task { await assignBudgetToCategory() }
                             }
-                            .buttonStyle(.glassProminent)
+                            .oasisButtonStyle(prominent: true)
                             .disabled(assignBudgetCategoryID == nil || parsedNumber(assignBudgetAmount) == nil || !isConnected)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -551,7 +551,7 @@ struct ContentView: View {
                             Button("Create") {
                                 Task { await createTransaction() }
                             }
-                            .buttonStyle(.glassProminent)
+                            .oasisButtonStyle(prominent: true)
                             .disabled(newTransactionAccountID == nil || parsedNumber(newTransactionAmount) == nil || !isConnected)
                         }
                     }
@@ -694,7 +694,7 @@ struct ContentView: View {
                         Button("Create Goal") {
                             Task { await createGoal() }
                         }
-                        .buttonStyle(.glassProminent)
+                        .oasisButtonStyle(prominent: true)
                         .disabled(newGoalName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || parsedNumber(newGoalTargetAmount) == nil || !isConnected)
                     }
                 }
@@ -879,7 +879,7 @@ struct ContentView: View {
                         Button("Create Account") {
                             Task { await createAccount() }
                         }
-                        .buttonStyle(.glassProminent)
+                        .oasisButtonStyle(prominent: true)
                         .disabled(newAccountName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || parsedNumber(newAccountBalance) == nil || !isConnected)
                     }
                 }
@@ -960,7 +960,7 @@ struct ContentView: View {
                         Button("Create") {
                             Task { await createSubscription() }
                         }
-                        .buttonStyle(.glassProminent)
+                        .oasisButtonStyle(prominent: true)
                         .disabled(newSubscriptionAccountID == nil || parsedNumber(newSubscriptionAmount) == nil || !isConnected)
                     }
                 }
@@ -1024,7 +1024,7 @@ struct ContentView: View {
                         Button("Create") {
                             Task { await createInvestment() }
                         }
-                        .buttonStyle(.glassProminent)
+                        .oasisButtonStyle(prominent: true)
                         .disabled(newInvestmentTicker.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || newInvestmentName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || !isConnected)
                     }
                 }
@@ -1100,7 +1100,7 @@ struct ContentView: View {
                         Button("Create") {
                             Task { await createDebt() }
                         }
-                        .buttonStyle(.glassProminent)
+                        .oasisButtonStyle(prominent: true)
                         .disabled(newDebtName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || parsedNumber(newDebtBalance) == nil || !isConnected)
                     }
                 }
@@ -1167,7 +1167,7 @@ struct ContentView: View {
                                     Text("Login & Connect")
                                 }
                             }
-                            .buttonStyle(.glassProminent)
+                            .oasisButtonStyle(prominent: true)
                             .disabled(
                                 isAuthenticating ||
                                 formServerURL.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
@@ -1181,7 +1181,7 @@ struct ContentView: View {
                             Button("Use Token") {
                                 Task { await connectWithToken() }
                             }
-                            .buttonStyle(.glass)
+                            .oasisButtonStyle()
                             .disabled(
                                 formServerURL.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
                                 formToken.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
@@ -1205,20 +1205,20 @@ struct ContentView: View {
                             Button("Edit Connection") {
                                 showConnectionSheet = true
                             }
-                            .buttonStyle(.glassProminent)
+                            .oasisButtonStyle(prominent: true)
 
                             Button("Sync Now") {
                                 Task {
                                     await refreshData()
                                 }
                             }
-                            .buttonStyle(.glass)
+                            .oasisButtonStyle()
                             .disabled(isLoading || !isConnected)
 
                             Button("Disconnect") {
                                 disconnect()
                             }
-                            .buttonStyle(.glass)
+                            .oasisButtonStyle()
                             .disabled(storedAuthToken.isEmpty)
                         }
                     }
@@ -2057,7 +2057,7 @@ private struct PanelCard<Content: View>: View {
             content
         }
         .padding(14)
-        .glassEffect(.regular.tint(.white.opacity(isHovering ? 0.11 : 0.07)).interactive(), in: .rect(cornerRadius: 16))
+        .oasisGlassEffect(tint: .white.opacity(isHovering ? 0.11 : 0.07), cornerRadius: 16, interactive: true)
         .overlay {
             RoundedRectangle(cornerRadius: 16, style: .continuous)
                 .stroke(.white.opacity(isHovering ? 0.2 : 0.12), lineWidth: 1)
@@ -2093,7 +2093,7 @@ private struct StatTile: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(12)
-        .glassEffect(.regular.tint(tint.opacity(isHovering ? 0.24 : 0.15)).interactive(), in: .rect(cornerRadius: 16))
+        .oasisGlassEffect(tint: tint.opacity(isHovering ? 0.24 : 0.15), cornerRadius: 16, interactive: true)
         .scaleEffect(isHovering ? 1.01 : 1)
         .animation(.easeOut(duration: 0.16), value: isHovering)
         .onHover { hovering in
@@ -2356,6 +2356,56 @@ private extension EnvironmentValues {
     var appCurrencyCode: String {
         get { self[AppCurrencyCodeKey.self] }
         set { self[AppCurrencyCodeKey.self] = newValue }
+    }
+}
+
+private extension View {
+    @ViewBuilder
+    func oasisButtonStyle(prominent: Bool = false) -> some View {
+#if swift(>=6.2)
+        if #available(macOS 26.0, *) {
+            if prominent {
+                self.buttonStyle(.glassProminent)
+            } else {
+                self.buttonStyle(.glass)
+            }
+        } else {
+            if prominent {
+                self.buttonStyle(.borderedProminent)
+            } else {
+                self.buttonStyle(.bordered)
+            }
+        }
+#else
+        if prominent {
+            self.buttonStyle(.borderedProminent)
+        } else {
+            self.buttonStyle(.bordered)
+        }
+#endif
+    }
+
+    @ViewBuilder
+    func oasisGlassEffect(tint: Color, cornerRadius: CGFloat, interactive: Bool = false) -> some View {
+#if swift(>=6.2)
+        if #available(macOS 26.0, *) {
+            if interactive {
+                self.glassEffect(.regular.tint(tint).interactive(), in: .rect(cornerRadius: cornerRadius))
+            } else {
+                self.glassEffect(.regular.tint(tint), in: .rect(cornerRadius: cornerRadius))
+            }
+        } else {
+            self.background(
+                .ultraThinMaterial,
+                in: RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+            )
+        }
+#else
+        self.background(
+            .ultraThinMaterial,
+            in: RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
+        )
+#endif
     }
 }
 
