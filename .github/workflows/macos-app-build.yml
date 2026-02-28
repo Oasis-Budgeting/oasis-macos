@@ -28,7 +28,7 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             build
 
-      - name: Package .app artifact
+      - name: Package .app artifacts
         run: |
           APP_PATH="build/Build/Products/Release/Oasis.app"
           if [ ! -d "$APP_PATH" ]; then
@@ -36,11 +36,25 @@ jobs:
             find build -name "*.app" -maxdepth 6 || true
             exit 1
           fi
+
+          rm -rf dist
+          mkdir -p dist
+
+          cp -R "$APP_PATH" dist/
           ditto -c -k --sequesterRsrc --keepParent "$APP_PATH" "Oasis-macOS.zip"
+
+          hdiutil create \
+            -volname "Oasis" \
+            -srcfolder "dist/Oasis.app" \
+            -ov \
+            -format UDZO \
+            "Oasis-macOS.dmg"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: Oasis-macOS
-          path: Oasis-macOS.zip
+          path: |
+            Oasis-macOS.zip
+            Oasis-macOS.dmg
           if-no-files-found: error
