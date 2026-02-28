@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8118478E2F530C770011A5B5 /* BucketBudgetAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8118478D2F530C770011A5B5 /* BucketBudgetAPI.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		811847712F530AB60011A5B5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		811847612F530AB50011A5B5 /* Bucket Budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bucket Budget.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		811847702F530AB60011A5B5 /* Bucket BudgetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bucket BudgetTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8118477A2F530AB60011A5B5 /* Bucket BudgetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bucket BudgetUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8118478D2F530C770011A5B5 /* BucketBudgetAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketBudgetAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -79,6 +84,7 @@
 				811847732F530AB60011A5B5 /* Bucket BudgetTests */,
 				8118477D2F530AB60011A5B5 /* Bucket BudgetUITests */,
 				811847622F530AB50011A5B5 /* Products */,
+				8118478D2F530C770011A5B5 /* BucketBudgetAPI.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -236,6 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8118478E2F530C770011A5B5 /* BucketBudgetAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,9 +403,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsArbitraryLoads = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -426,9 +435,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsArbitraryLoads = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
