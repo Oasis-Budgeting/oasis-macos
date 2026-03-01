@@ -7,10 +7,45 @@
 
 import SwiftUI
 import Charts
+import Security
+
+enum TokenManager {
+    static let key = "oasis.authToken"
+
+    static var token: String {
+        get {
+            let query = [
+                kSecClass as String: kSecClassGenericPassword,
+                kSecAttrAccount as String: key,
+                kSecReturnData as String: true
+            ] as [String: Any]
+            var item: CFTypeRef?
+            if SecItemCopyMatching(query as CFDictionary, &item) == errSecSuccess, let data = item as? Data {
+                return String(data: data, encoding: .utf8) ?? ""
+            }
+            return ""
+        }
+        set {
+            let query = [
+                kSecClass as String: kSecClassGenericPassword,
+                kSecAttrAccount as String: key
+            ] as [String: Any]
+            SecItemDelete(query as CFDictionary)
+            if !newValue.isEmpty, let data = newValue.data(using: .utf8) {
+                let addQuery = [
+                    kSecClass as String: kSecClassGenericPassword,
+                    kSecAttrAccount as String: key,
+                    kSecValueData as String: data
+                ] as [String: Any]
+                SecItemAdd(addQuery as CFDictionary, nil)
+            }
+        }
+    }
+}
 
 struct ContentView: View {
     @AppStorage("oasis.serverURL") private var storedServerURL = "http://192.168.0.105:3003"
-    @AppStorage("oasis.authToken") private var storedAuthToken = ""
+    @State private var storedAuthToken = TokenManager.token
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     @State private var selectedSection: SidebarSection? = .dashboard
@@ -1594,6 +1629,7 @@ struct ContentView: View {
             let loginResponse = try await client.login(request: .init(identifier: formIdentifier, password: formPassword))
             storedServerURL = formServerURL.trimmingCharacters(in: .whitespacesAndNewlines)
             storedAuthToken = loginResponse.token
+            TokenManager.token = loginResponse.token
             formToken = loginResponse.token
             showConnectionSheet = false
             await refreshData()
@@ -1606,6 +1642,7 @@ struct ContentView: View {
     private func connectWithToken() async {
         storedServerURL = formServerURL.trimmingCharacters(in: .whitespacesAndNewlines)
         storedAuthToken = formToken.trimmingCharacters(in: .whitespacesAndNewlines)
+        TokenManager.token = storedAuthToken
         showConnectionSheet = false
         await refreshData()
     }
@@ -1613,6 +1650,7 @@ struct ContentView: View {
     @MainActor
     private func disconnect() {
         storedAuthToken = ""
+        TokenManager.token = ""
         formToken = ""
         dashboard = nil
         allTransactions = []
