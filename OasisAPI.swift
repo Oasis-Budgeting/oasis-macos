@@ -678,7 +678,7 @@ struct OasisAPIClient {
         }
 
         if components.scheme == nil {
-            components.scheme = "http"
+            components.scheme = "https"
         }
 
         guard var baseURL = components.url else {
