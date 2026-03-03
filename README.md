@@ -95,11 +95,12 @@ Default server URL in current code:
 
 Connection behavior:
 
-- If server URL has no scheme, the client assumes `http`
+- If server URL has no scheme, the client assumes `https`
 - If base URL does not end with `/api`, the client auto-prefixes `/api`
 
 Examples:
 
+- `localhost:3003` -> requests sent to `https://localhost:3003/api/...`
 - `http://localhost:3003` -> requests sent to `http://localhost:3003/api/...`
 - `https://example.com/api` -> requests sent to `https://example.com/api/...`
 

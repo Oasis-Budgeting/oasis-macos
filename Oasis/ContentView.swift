@@ -1631,6 +1631,7 @@ struct ContentView: View {
             storedAuthToken = loginResponse.token
             TokenManager.token = loginResponse.token
             formToken = loginResponse.token
+            formPassword = "" // Clear plaintext password from memory
             showConnectionSheet = false
             await refreshData()
         } catch {
@@ -1652,6 +1653,7 @@ struct ContentView: View {
         storedAuthToken = ""
         TokenManager.token = ""
         formToken = ""
+        formPassword = ""
         dashboard = nil
         allTransactions = []
         goals = []
