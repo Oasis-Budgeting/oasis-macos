@@ -1622,6 +1622,7 @@ struct ContentView: View {
 
         defer {
             isAuthenticating = false
+            formPassword = ""
         }
 
         do {
@@ -1652,6 +1653,7 @@ struct ContentView: View {
         storedAuthToken = ""
         TokenManager.token = ""
         formToken = ""
+        formPassword = ""
         dashboard = nil
         allTransactions = []
         goals = []
