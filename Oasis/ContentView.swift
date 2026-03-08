@@ -35,7 +35,8 @@ enum TokenManager {
                 let addQuery = [
                     kSecClass as String: kSecClassGenericPassword,
                     kSecAttrAccount as String: key,
-                    kSecValueData as String: data
+                    kSecValueData as String: data,
+                    kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlocked
                 ] as [String: Any]
                 SecItemAdd(addQuery as CFDictionary, nil)
             }
