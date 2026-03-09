@@ -17,7 +17,8 @@ enum TokenManager {
             let query = [
                 kSecClass as String: kSecClassGenericPassword,
                 kSecAttrAccount as String: key,
-                kSecReturnData as String: true
+                kSecReturnData as String: true,
+                kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlocked
             ] as [String: Any]
             var item: CFTypeRef?
             if SecItemCopyMatching(query as CFDictionary, &item) == errSecSuccess, let data = item as? Data {
@@ -272,7 +273,6 @@ struct ContentView: View {
         }
         .onAppear {
             formServerURL = storedServerURL
-            formToken = storedAuthToken
 
             guard !hasLoaded else {
                 return
@@ -1632,7 +1632,7 @@ struct ContentView: View {
             storedServerURL = formServerURL.trimmingCharacters(in: .whitespacesAndNewlines)
             storedAuthToken = loginResponse.token
             TokenManager.token = loginResponse.token
-            formToken = loginResponse.token
+            formToken = ""
             showConnectionSheet = false
             await refreshData()
         } catch {
@@ -1645,6 +1645,8 @@ struct ContentView: View {
         storedServerURL = formServerURL.trimmingCharacters(in: .whitespacesAndNewlines)
         storedAuthToken = formToken.trimmingCharacters(in: .whitespacesAndNewlines)
         TokenManager.token = storedAuthToken
+        formToken = ""
+        formPassword = ""
         showConnectionSheet = false
         await refreshData()
     }
