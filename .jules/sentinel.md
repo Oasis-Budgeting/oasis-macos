@@ -14,3 +14,12 @@
 **Vulnerability:** The authentication token `oasis.authToken` was stored in the Keychain without specifying an accessibility attribute (`kSecAttrAccessible`). This could allow the token to be accessed when the device is locked or compromised.
 **Learning:** When saving items to the Keychain, it's crucial to specify an accessibility attribute to ensure the data is only available when necessary (e.g., when the device is unlocked).
 **Prevention:** Always include the `kSecAttrAccessible` key in Keychain storage queries for sensitive data, and set it to `kSecAttrAccessibleWhenUnlocked` (or an appropriate stricter value) to enforce data protection.
+## 2025-03-08 - [Insecure Keychain Query Filtering]
+**Vulnerability:** Adding the `kSecAttrAccessible` attribute to Keychain read (`SecItemCopyMatching`) or delete (`SecItemDelete`) queries acts as a strict search filter, not a security enforcement mechanism. It will fail to match existing items saved with different default accessibility levels, breaking backward compatibility and potentially preventing users from logging in.
+**Learning:** Security constraints (like `kSecAttrAccessibleWhenUnlocked`) must be strictly enforced during the *write* operation (`SecItemAdd` or `SecItemUpdate`), not during the read or delete operations, to preserve functionality across different OS defaults or legacy saved states.
+**Prevention:** Do not include `kSecAttrAccessible` in `kSecClassGenericPassword` read/delete queries unless you explicitly intend to filter out existing items saved with different access policies.
+
+## 2025-03-08 - [UI State Exposing Sensitive Data]
+**Vulnerability:** Rehydrating sensitive authentication tokens (`storedAuthToken`) into view state variables (`formToken`) upon view appearance (`.onAppear`) exposes credentials in plain text in the UI and keeps them lingering in memory.
+**Learning:** Sensitive tokens used for backend authentication should not be bound to UI text fields for editing or display after initial entry.
+**Prevention:** Remove UI rehydration logic for credentials, only update underlying stored tokens if the user actively inputs a new one, and ensure sensitive view states are cleared (e.g., using `defer`) immediately after use.
