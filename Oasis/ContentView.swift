@@ -272,7 +272,6 @@ struct ContentView: View {
         }
         .onAppear {
             formServerURL = storedServerURL
-            formToken = storedAuthToken
 
             guard !hasLoaded else {
                 return
@@ -1632,7 +1631,7 @@ struct ContentView: View {
             storedServerURL = formServerURL.trimmingCharacters(in: .whitespacesAndNewlines)
             storedAuthToken = loginResponse.token
             TokenManager.token = loginResponse.token
-            formToken = loginResponse.token
+            formToken = ""
             showConnectionSheet = false
             await refreshData()
         } catch {
@@ -1643,8 +1642,12 @@ struct ContentView: View {
     @MainActor
     private func connectWithToken() async {
         storedServerURL = formServerURL.trimmingCharacters(in: .whitespacesAndNewlines)
-        storedAuthToken = formToken.trimmingCharacters(in: .whitespacesAndNewlines)
-        TokenManager.token = storedAuthToken
+        let trimmedToken = formToken.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !trimmedToken.isEmpty {
+            storedAuthToken = trimmedToken
+            TokenManager.token = trimmedToken
+        }
+        formToken = ""
         showConnectionSheet = false
         await refreshData()
     }
