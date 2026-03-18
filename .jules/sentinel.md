@@ -14,3 +14,7 @@
 **Vulnerability:** The authentication token `oasis.authToken` was stored in the Keychain without specifying an accessibility attribute (`kSecAttrAccessible`). This could allow the token to be accessed when the device is locked or compromised.
 **Learning:** When saving items to the Keychain, it's crucial to specify an accessibility attribute to ensure the data is only available when necessary (e.g., when the device is unlocked).
 **Prevention:** Always include the `kSecAttrAccessible` key in Keychain storage queries for sensitive data, and set it to `kSecAttrAccessibleWhenUnlocked` (or an appropriate stricter value) to enforce data protection.
+## 2024-03-08 - [Insecure UI State Rehydration of Sensitive Tokens]
+**Vulnerability:** The authentication token was rehydrated into the `formToken` UI state variable via `.onAppear` and persisted in memory unnecessarily after login.
+**Learning:** Automatically populating UI forms with sensitive credentials like access tokens exposes them in memory and UI component state longer than necessary, increasing risk of exposure.
+**Prevention:** Avoid rehydrating sensitive tokens into UI inputs unless actively modifying them. Ensure subsequent form submission logic (like `connectWithToken()`) handles potentially empty state variables safely without overwriting stored credentials unintentionally.
