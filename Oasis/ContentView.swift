@@ -45,7 +45,7 @@ enum TokenManager {
 }
 
 struct ContentView: View {
-    @AppStorage("oasis.serverURL") private var storedServerURL = "http://192.168.0.105:3003"
+    @AppStorage("oasis.serverURL") private var storedServerURL = "https://192.168.0.105:3003"
     @State private var storedAuthToken = TokenManager.token
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -272,7 +272,6 @@ struct ContentView: View {
         }
         .onAppear {
             formServerURL = storedServerURL
-            formToken = storedAuthToken
 
             guard !hasLoaded else {
                 return
@@ -1624,6 +1623,7 @@ struct ContentView: View {
         defer {
             isAuthenticating = false
             formPassword = ""
+            formToken = ""
         }
 
         do {
@@ -1632,7 +1632,6 @@ struct ContentView: View {
             storedServerURL = formServerURL.trimmingCharacters(in: .whitespacesAndNewlines)
             storedAuthToken = loginResponse.token
             TokenManager.token = loginResponse.token
-            formToken = loginResponse.token
             showConnectionSheet = false
             await refreshData()
         } catch {
@@ -1643,8 +1642,14 @@ struct ContentView: View {
     @MainActor
     private func connectWithToken() async {
         storedServerURL = formServerURL.trimmingCharacters(in: .whitespacesAndNewlines)
-        storedAuthToken = formToken.trimmingCharacters(in: .whitespacesAndNewlines)
-        TokenManager.token = storedAuthToken
+
+        let cleanedToken = formToken.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !cleanedToken.isEmpty {
+            storedAuthToken = cleanedToken
+            TokenManager.token = storedAuthToken
+        }
+
+        formToken = ""
         showConnectionSheet = false
         await refreshData()
     }
