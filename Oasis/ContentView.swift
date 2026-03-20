@@ -272,7 +272,6 @@ struct ContentView: View {
         }
         .onAppear {
             formServerURL = storedServerURL
-            formToken = storedAuthToken
 
             guard !hasLoaded else {
                 return
@@ -1219,8 +1218,7 @@ struct ContentView: View {
                             }
                             .oasisButtonStyle()
                             .disabled(
-                                formServerURL.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
-                                formToken.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                                formServerURL.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
                             )
                         }
                     }
@@ -1313,8 +1311,7 @@ struct ContentView: View {
                         }
                     }
                     .disabled(
-                        formServerURL.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
-                        formToken.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                        formServerURL.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
                     )
                 }
             }
@@ -1323,6 +1320,8 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Close") {
+                        formPassword = ""
+                        formToken = ""
                         showConnectionSheet = false
                     }
                 }
@@ -1632,7 +1631,6 @@ struct ContentView: View {
             storedServerURL = formServerURL.trimmingCharacters(in: .whitespacesAndNewlines)
             storedAuthToken = loginResponse.token
             TokenManager.token = loginResponse.token
-            formToken = loginResponse.token
             showConnectionSheet = false
             await refreshData()
         } catch {
@@ -1642,9 +1640,15 @@ struct ContentView: View {
 
     @MainActor
     private func connectWithToken() async {
+        defer { formToken = "" }
         storedServerURL = formServerURL.trimmingCharacters(in: .whitespacesAndNewlines)
-        storedAuthToken = formToken.trimmingCharacters(in: .whitespacesAndNewlines)
-        TokenManager.token = storedAuthToken
+
+        let trimmedToken = formToken.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !trimmedToken.isEmpty {
+            storedAuthToken = trimmedToken
+            TokenManager.token = storedAuthToken
+        }
+
         showConnectionSheet = false
         await refreshData()
     }
