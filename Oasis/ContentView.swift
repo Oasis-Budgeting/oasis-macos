@@ -272,7 +272,6 @@ struct ContentView: View {
         }
         .onAppear {
             formServerURL = storedServerURL
-            formToken = storedAuthToken
 
             guard !hasLoaded else {
                 return
@@ -1624,6 +1623,7 @@ struct ContentView: View {
         defer {
             isAuthenticating = false
             formPassword = ""
+            formToken = ""
         }
 
         do {
@@ -1632,7 +1632,6 @@ struct ContentView: View {
             storedServerURL = formServerURL.trimmingCharacters(in: .whitespacesAndNewlines)
             storedAuthToken = loginResponse.token
             TokenManager.token = loginResponse.token
-            formToken = loginResponse.token
             showConnectionSheet = false
             await refreshData()
         } catch {
@@ -1642,11 +1641,21 @@ struct ContentView: View {
 
     @MainActor
     private func connectWithToken() async {
-        storedServerURL = formServerURL.trimmingCharacters(in: .whitespacesAndNewlines)
-        storedAuthToken = formToken.trimmingCharacters(in: .whitespacesAndNewlines)
-        TokenManager.token = storedAuthToken
-        showConnectionSheet = false
-        await refreshData()
+        defer { formToken = "" }
+        let newToken = formToken.trimmingCharacters(in: .whitespacesAndNewlines)
+        let resolvedToken = newToken.isEmpty ? storedAuthToken : newToken
+
+        if !resolvedToken.isEmpty {
+            storedServerURL = formServerURL.trimmingCharacters(in: .whitespacesAndNewlines)
+            if !newToken.isEmpty {
+                storedAuthToken = newToken
+            }
+            TokenManager.token = resolvedToken
+            showConnectionSheet = false
+            await refreshData()
+        } else {
+            errorMessage = "Please enter a valid token."
+        }
     }
 
     @MainActor
