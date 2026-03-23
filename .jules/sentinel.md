@@ -14,3 +14,7 @@
 **Vulnerability:** The authentication token `oasis.authToken` was stored in the Keychain without specifying an accessibility attribute (`kSecAttrAccessible`). This could allow the token to be accessed when the device is locked or compromised.
 **Learning:** When saving items to the Keychain, it's crucial to specify an accessibility attribute to ensure the data is only available when necessary (e.g., when the device is unlocked).
 **Prevention:** Always include the `kSecAttrAccessible` key in Keychain storage queries for sensitive data, and set it to `kSecAttrAccessibleWhenUnlocked` (or an appropriate stricter value) to enforce data protection.
+## 2025-05-18 - [Insecure UI State Token Rehydration]
+**Vulnerability:** The authentication token `storedAuthToken` was being copied into `formToken` on `.onAppear` in SwiftUI, exposing sensitive session data directly in the UI if the connection settings screen was opened or briefly rendered.
+**Learning:** Rehydrating sensitive state variables strictly for the sake of UI rendering presents a significant risk, particularly for tokens that can grant full account access.
+**Prevention:** Avoid explicitly binding or populating stored sensitive credentials into UI text fields. Provide fallback logic in submission methods to allow operations to continue for returning authenticated users without displaying the token on-screen.
