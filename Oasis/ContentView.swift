@@ -272,7 +272,6 @@ struct ContentView: View {
         }
         .onAppear {
             formServerURL = storedServerURL
-            formToken = storedAuthToken
 
             guard !hasLoaded else {
                 return
@@ -1220,7 +1219,7 @@ struct ContentView: View {
                             .oasisButtonStyle()
                             .disabled(
                                 formServerURL.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
-                                formToken.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                                (formToken.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && storedAuthToken.isEmpty)
                             )
                         }
                     }
@@ -1314,7 +1313,7 @@ struct ContentView: View {
                     }
                     .disabled(
                         formServerURL.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
-                        formToken.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                        (formToken.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && storedAuthToken.isEmpty)
                     )
                 }
             }
@@ -1624,6 +1623,7 @@ struct ContentView: View {
         defer {
             isAuthenticating = false
             formPassword = ""
+            formToken = ""
         }
 
         do {
@@ -1632,7 +1632,6 @@ struct ContentView: View {
             storedServerURL = formServerURL.trimmingCharacters(in: .whitespacesAndNewlines)
             storedAuthToken = loginResponse.token
             TokenManager.token = loginResponse.token
-            formToken = loginResponse.token
             showConnectionSheet = false
             await refreshData()
         } catch {
@@ -1642,8 +1641,13 @@ struct ContentView: View {
 
     @MainActor
     private func connectWithToken() async {
+        defer {
+            formToken = ""
+        }
+
         storedServerURL = formServerURL.trimmingCharacters(in: .whitespacesAndNewlines)
-        storedAuthToken = formToken.trimmingCharacters(in: .whitespacesAndNewlines)
+        let resolvedToken = formToken.isEmpty ? storedAuthToken : formToken
+        storedAuthToken = resolvedToken.trimmingCharacters(in: .whitespacesAndNewlines)
         TokenManager.token = storedAuthToken
         showConnectionSheet = false
         await refreshData()
