@@ -1,3 +1,7 @@
+## 2024-06-25 - [Sensitive Token Exposure in UI State Rehydration]
+**Vulnerability:** The authentication token `storedAuthToken` was being copied into `formToken` on view appearance (`.onAppear`), exposing the sensitive credential in plaintext in the UI settings when the user checked their connection status.
+**Learning:** Rehydrating sensitive state variables strictly for UI convenience introduces an unnecessary attack vector where credentials can be viewed over-the-shoulder or via screen capture.
+**Prevention:** Never populate UI form fields with existing sensitive tokens. Ensure authentication flows can safely handle empty fields (as placeholders for "keep existing") and explicitly clear temporary credentials from memory (`defer { formToken = "" }`) after consumption.
 ## 2026-03-07 - [Insecure Default URL Scheme]
 **Vulnerability:** The API client defaulted to `http` for network requests when a URL scheme was omitted, risking unencrypted transmission of sensitive data and credentials.
 **Learning:** Defaulting to plaintext HTTP can easily expose authentication tokens and financial data over insecure networks. Clients should strictly enforce HTTPS by default.
