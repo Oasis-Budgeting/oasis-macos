@@ -1,3 +1,7 @@
+## 2026-03-27 - [Sensitive Data Exposure via UI Rehydration]
+**Vulnerability:** The SwiftUI app automatically populated the `formToken` UI state variable with the securely stored `storedAuthToken` when the connection settings view appeared (`.onAppear`). This negated the benefits of secure storage by needlessly exposing the active credential in memory and directly rendering it into a text field where it could be visually observed or inadvertently logged.
+**Learning:** State rehydration patterns common in declarative UI frameworks can inadvertently pull sensitive data from secure storage into less secure environments (like UI memory spaces) simply for the convenience of showing "existing state" to the user.
+**Prevention:** Never rehydrate sensitive credentials (like tokens or passwords) from secure storage back into UI state properties. If a user needs to update a credential, provide a blank field. Keep the credential in secure storage unless strictly needed for network transmission.
 ## 2026-03-07 - [Insecure Default URL Scheme]
 **Vulnerability:** The API client defaulted to `http` for network requests when a URL scheme was omitted, risking unencrypted transmission of sensitive data and credentials.
 **Learning:** Defaulting to plaintext HTTP can easily expose authentication tokens and financial data over insecure networks. Clients should strictly enforce HTTPS by default.
