@@ -14,3 +14,7 @@
 **Vulnerability:** The authentication token `oasis.authToken` was stored in the Keychain without specifying an accessibility attribute (`kSecAttrAccessible`). This could allow the token to be accessed when the device is locked or compromised.
 **Learning:** When saving items to the Keychain, it's crucial to specify an accessibility attribute to ensure the data is only available when necessary (e.g., when the device is unlocked).
 **Prevention:** Always include the `kSecAttrAccessible` key in Keychain storage queries for sensitive data, and set it to `kSecAttrAccessibleWhenUnlocked` (or an appropriate stricter value) to enforce data protection.
+## 2026-03-08 - [Insecure Token Rehydration in SwiftUI Forms]
+**Vulnerability:** The authentication token was rehydrated into the `formToken` `@State` variable on `ContentView`'s `.onAppear`, exposing the sensitive credential in memory and UI.
+**Learning:** Avoid pre-filling or rehydrating sensitive user data into visible or hidden UI components unnecessarily. Use stored fallback states internally if needed.
+**Prevention:** Never populate secure/authentication inputs with stored tokens. Ensure sensitive tokens used in forms are wiped immediately using `defer` blocks to limit their lifecycle in memory.
